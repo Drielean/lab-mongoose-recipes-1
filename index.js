@@ -19,9 +19,23 @@ mongoose
     // Before adding any documents to the database, let's delete all previous entries
     return self.connection.dropDatabase();
   })
-  .then(() => {
+  .then( async () => {
     // Run your code here, after you have insured that the connection was made
+    const newRecipe = await Recipe.create({    
+      title: "Pizza",
+      level: "Easy Peasy",
+      ingredients: ["Pizza Dough", "Toppings", "Tomato Sauce", "Cheeze" ],
+      cuisine: "Italian",
+      dishType: "main_course",
+      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+      duration: 45,
+      creator: "Random Italian Person",
+      created: new Date ("11-06-1889"),
   })
+  console.log(newRecipe.title);
+})
   .catch(error => {
     console.error('Error connecting to the database', error);
   });
+
+  
